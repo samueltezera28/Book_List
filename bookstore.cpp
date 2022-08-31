@@ -1,4 +1,5 @@
 #include<iostream>
+#include<string>
 using namespace std;
 struct BookList{
 	int Isbn;
@@ -12,32 +13,24 @@ struct BookList{
 	BookList* next;
 	BookList* prev;
 };
-
+BookList* head = NULL;
 
 
 class DlinkedList{
- public:
- 	BookList* head;
+ 	
  public:
  	DlinkedList(){ 
-	 head = NULL;
+	
 	 }
 	BookList* input_data(){
 		BookList* book_data = new BookList;
-		cout<<"\n enter Isbn: ";
-		cin>>book_data->Isbn;
-		cout<<"\n enter Title of the book: ";
-		cin>>book_data->Title;
-		cout<<"\n enter Author: ";
-		cin>>book_data->Author;
-		cout<<"\n enter Publisher: ";
-		cin>>book_data->Publisher;
-		cout<<"\n enter Publishing_Date: ";
-		cin>>book_data->Publishing_Date;
-		cout<<"\n enter Number of Pages: ";
-		cin>>book_data->Num_of_page;
-		cout<<"\n enter Total_quantity: ";
-		cin>>book_data->Total_quantity;
+		cout<<"\n enter Isbn: ";cin>>book_data->Isbn;
+		cout<<"\n enter Title of the book: ";cin>>book_data->Title;
+		cout<<"\n enter Author: ";cin>>book_data->Author;
+		cout<<"\n enter Publisher: ";cin>>book_data->Publisher;
+		cout<<"\n enter Publishing_Date: ";cin>>book_data->Publishing_Date;
+		cout<<"\n enter Number of Pages: ";cin>>book_data->Num_of_page;
+		cout<<"\n enter Total_quantity: ";cin>>book_data->Total_quantity;
 		
 		book_data->next = NULL;
 		book_data->prev = NULL;
@@ -59,7 +52,7 @@ class DlinkedList{
 		head = temp;
 	}
 }
-	void inser_last(){//doesnt work properly
+	void inser_last(){
 		if(head == NULL){
 			head = input_data();
 		}
@@ -96,6 +89,8 @@ class DlinkedList{
 		} 
 	}
 	void search_by_isbn(int searchvalue);
+	void search_by_title(string SearchTitle);
+	void search_by_author(string SearchAuthor);
 };
 int search_book_menu();
 int sort_book_menu();
@@ -103,7 +98,7 @@ int update_menu();
 
 int main(){
 	int option;
-	DlinkedList list;
+	
 	while(true){		
 		cout<<"\t\t********************************************************************"<<endl;
 		cout<<"\t\t\tWellcome To Automated book managment system"<<endl;
@@ -146,7 +141,8 @@ int main(){
 
 
 int search_book_menu(){
-	int option,SearchIsbn,SearchTitle,SearchAuthor;
+	string SearchTitle, SearchAuthor;
+	int option, SearchIsbn;
 	DlinkedList list;
 	
 	while(true){		
@@ -164,19 +160,19 @@ int search_book_menu(){
 		
 	switch(option){
 		case 1:
-			cout<<"Input Isbn of the book";
+			cout<<"Input Isbn of the book: ";
 			cin>>SearchIsbn;
 			list.search_by_isbn(SearchIsbn);
 			break;
 		case 2:
-			cout<<"Input Title of the book";
+			cout<<"Input Title of the book: ";
 			cin>>SearchTitle;
-			//search_by_title(searchTitle);
+			list.search_by_title(SearchTitle);
 			break;
 		case 3:
-			cout<<"Input Author of the book";
+			cout<<"Input Author of the book: ";
 			cin>>SearchAuthor;
-			//search_by_author(SearchAuthor);
+			list.search_by_author(SearchAuthor);
 			break;
 		case 4:
 			main();
@@ -190,17 +186,24 @@ int search_book_menu(){
 void DlinkedList::search_by_isbn(int searchvalue){
 		
 	BookList* temp = head;
-	int i,value=0;
+	int i,value;
 	 if (temp != NULL){
 	 	while(temp != NULL ){
 	 		i++;
 	 		if (temp->Isbn == searchvalue){
-	 			value++;
+	 			value = 5;
+	 			cout<<"\n Title of the book:"<<temp->Title;
+				cout<<"\n Author of the book:"<<temp->Author;
+				cout<<"\n Publisher of the book:"<<temp->Publisher;
+				cout<<"\n publishing date of the book:"<<temp->Publishing_Date;
+				cout<<"\n Total page:"<<temp->Num_of_page;
+				cout<<"\n Quantity of the book:"<<temp->Total_quantity;
+				cout<<"\n International standard book number:"<<temp->Isbn<<endl<<endl;
 	 			break;
 			 }
 			 temp = temp->next;
 		 }
-		 if (value == 1){
+		 if (value == 5){
 		 	cout<<searchvalue<<" is found at index = "<<i<<".\n";
 		 }else{
 		 	cout<<searchvalue<<" is not found in the list.\n";
@@ -208,6 +211,60 @@ void DlinkedList::search_by_isbn(int searchvalue){
 	 }
 }
 
+void DlinkedList::search_by_title(string SearchTitle){
+	BookList* temp = head;
+	int i,value;
+	 if (temp != NULL){
+	 	while(temp != NULL ){
+	 		i++;
+	 		if (temp->Title == SearchTitle){
+	 			value = 5;
+	 			cout<<"\n Title of the book:"<<temp->Title;
+				cout<<"\n Author of the book:"<<temp->Author;
+				cout<<"\n Publisher of the book:"<<temp->Publisher;
+				cout<<"\n publishing date of the book:"<<temp->Publishing_Date;
+				cout<<"\n Total page:"<<temp->Num_of_page;
+				cout<<"\n Quantity of the book:"<<temp->Total_quantity;
+				cout<<"\n International standard book number:"<<temp->Isbn<<endl<<endl;
+	 			break;
+			 }
+			 temp = temp->next;
+		 }
+		 if (value == 5){
+		 	cout<<SearchTitle<<" is found at index = "<<i<<".\n";
+		 }else{
+		 	cout<<SearchTitle<<" is not found in the list.\n";
+		 }
+	 }
+	
+}
+void DlinkedList::search_by_author(string SearchAuthor){
+	BookList* temp = head;
+	int i,value;
+	 if (temp != NULL){
+	 	while(temp != NULL ){
+	 		i++;
+	 		if (temp->Author == SearchAuthor){
+	 			value = 5;
+	 			cout<<"\n Title of the book:"<<temp->Title;
+				cout<<"\n Author of the book:"<<temp->Author;
+				cout<<"\n Publisher of the book:"<<temp->Publisher;
+				cout<<"\n publishing date of the book:"<<temp->Publishing_Date;
+				cout<<"\n Total page:"<<temp->Num_of_page;
+				cout<<"\n Quantity of the book:"<<temp->Total_quantity;
+				cout<<"\n International standard book number:"<<temp->Isbn<<endl<<endl;
+	 			break;
+			 }
+			 temp = temp->next;
+		 }
+		 if (value == 5){
+		 	cout<<SearchAuthor<<" is found at index = "<<i<<".\n";
+		 }else{
+		 	cout<<SearchAuthor<<" is not found in the list.\n";
+		 }
+	 }
+	
+}
 int sort_book_menu(){
 	int option,SortIsbn,SortTitle;
 	
@@ -262,8 +319,6 @@ int update_menu(){
 	switch(option){
 		case 1:
 			listt.insert_first();
-			listt.display_data();
-			//add_book();
 			break;
 		case 2:
 			listt.display_data();
@@ -274,6 +329,8 @@ int update_menu(){
 		case 4:
 			main();
 			break;
+		case 5:
+			main();
 		default:
 			cout<<"Please Input A valid Choice"<<endl<<endl;
 	}	
