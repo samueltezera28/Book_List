@@ -95,10 +95,12 @@ class DlinkedList{
 			}
 		} 
 	}
+	void search_by_isbn(int searchvalue);
 };
 int search_book_menu();
 int sort_book_menu();
 int update_menu();
+
 int main(){
 	int option;
 	DlinkedList list;
@@ -113,7 +115,7 @@ int main(){
 		cout<<"enter 4)Exit"<<endl;
 		cout<<"Enter Choice:";
 		cin>>option;
-		system("cls");
+		//system("cls");
 		
 	switch(option){
 		case 1:
@@ -145,6 +147,7 @@ int main(){
 
 int search_book_menu(){
 	int option,SearchIsbn,SearchTitle,SearchAuthor;
+	DlinkedList list;
 	
 	while(true){		
 		cout<<"\t\t********************************************************************"<<endl;
@@ -157,13 +160,13 @@ int search_book_menu(){
 		cout<<"enter 4 to Go back"<<endl;
 		cout<<"Enter Choice:";
 		cin>>option;
-		system("cls");
+		//system("cls");
 		
 	switch(option){
 		case 1:
 			cout<<"Input Isbn of the book";
 			cin>>SearchIsbn;
-			//search_by_isbn(searchvalue);
+			list.search_by_isbn(SearchIsbn);
 			break;
 		case 2:
 			cout<<"Input Title of the book";
@@ -184,6 +187,27 @@ int search_book_menu(){
 }
 }
 
+void DlinkedList::search_by_isbn(int searchvalue){
+		
+	BookList* temp = head;
+	int i,value=0;
+	 if (temp != NULL){
+	 	while(temp != NULL ){
+	 		i++;
+	 		if (temp->Isbn == searchvalue){
+	 			value++;
+	 			break;
+			 }
+			 temp = temp->next;
+		 }
+		 if (value == 1){
+		 	cout<<searchvalue<<" is found at index = "<<i<<".\n";
+		 }else{
+		 	cout<<searchvalue<<" is not found in the list.\n";
+		 }
+	 }
+}
+
 int sort_book_menu(){
 	int option,SortIsbn,SortTitle;
 	
@@ -197,7 +221,7 @@ int sort_book_menu(){
 		cout<<"enter 3 to Go back"<<endl;
 		cout<<"Enter Choice:";
 		cin>>option;
-		system("cls");
+		//system("cls");
 		
 	switch(option){
 		case 1:
@@ -220,6 +244,7 @@ int sort_book_menu(){
 }//end of sort menu
 
 int update_menu(){
+	DlinkedList listt;
 	int option;
 		while(true){		
 		cout<<"\t\t********************************************************************"<<endl;
@@ -227,18 +252,21 @@ int update_menu(){
 		cout<<"\t\t********************************************************************"<<endl<<endl;
 	
 		cout<<"enter 1 to add new book"<<endl;
-		cout<<"enter 2 to remove book"<<endl;
-		cout<<"enter 3 update quantity of a given book"<<endl;
-		cout<<"enter 4 to Go back"<<endl;
+		cout<<"enter 2 to display book"<<endl;
+		cout<<"enter 3 to remove book"<<endl;
+		cout<<"enter 4 update quantity of a given book"<<endl;
+		cout<<"enter 5 to Go back"<<endl;
 		cout<<"Enter Choice:";
 		cin>>option;
-		system("cls");
+		//system("cls");
 	switch(option){
 		case 1:
+			listt.insert_first();
+			listt.display_data();
 			//add_book();
 			break;
 		case 2:
-			//delete_book();
+			listt.display_data();
 			break;
 		case 3:
 			main();
