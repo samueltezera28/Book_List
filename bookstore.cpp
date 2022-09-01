@@ -329,7 +329,7 @@ void SortTitle(string Book books[],int num){
 	{
 		for(int j=0;j<num-(i+1);j++)
 		{
-			if(strcmp(books[i].name,books[j].name)>0)
+			if(strcmp(books[i].name,books[j].name)>0) //strcmp is a function used to Compare two strings
 			{
 				Book temp = books[i];
 				books[i] = books[j];
