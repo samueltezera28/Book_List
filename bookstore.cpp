@@ -284,12 +284,12 @@ int sort_book_menu(){
 		case 1:
 			cout<<"Input Isbn of the book";
 			cin>>SortIsbn;
-			//sort_by_isbn(SortIsbn);
+			SortIsbn(char Book books [],int num); // check this function
 			break;
 		case 2:
 			cout<<"Input Title of the book";
 			cin>>SortTitle;
-			//sort_by_title(SortTitle);
+			SortTitle(Book books[],int num); //check this function 
 			break;
 		case 3:
 			main();
@@ -299,6 +299,47 @@ int sort_book_menu(){
 	}	
 }
 }//end of sort menu
+
+
+// sort by isbn *****************
+
+void SortIsbn(char Book books [],int num){
+	cout<<"List of Books Sorted by ISBN: "<<endl;
+	for(int i=0;i<num;i++)
+	{
+		for(int j=i+1;j<num;j++)
+		{
+			if(books[i].ISBN > books[j].ISBN)
+			{
+				Book temp = books[i];
+				books[i] = books[j];
+				books[j] = temp;
+			}
+		}
+	}
+}
+
+//end of sort by isbn function
+
+// sort by title
+
+void SortTitle(Book books[],int num){
+	cout<<"List of books sorted by Title: "<<endl;
+	for(int i=0;i<num-1;i++)
+	{
+		for(int j=0;j<num-(i+1);j++)
+		{
+			if(strcmp(books[i].name,books[j].name)>0)
+			{
+				Book temp = books[i];
+				books[i] = books[j];
+				books[j] = temp;
+			}
+		}
+	}
+}
+
+// end of sort by title function ************
 
 int update_menu(){
 	DlinkedList listt;
