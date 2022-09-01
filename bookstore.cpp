@@ -303,7 +303,7 @@ int sort_book_menu(){
 
 // sort by isbn *****************
 
-void SortIsbn(char Book books [],int num){
+void SortIsbn(string Book books [],int num){
 	cout<<"List of Books Sorted by ISBN: "<<endl;
 	for(int i=0;i<num;i++)
 	{
@@ -323,7 +323,7 @@ void SortIsbn(char Book books [],int num){
 
 // sort by title
 
-void SortTitle(Book books[],int num){
+void SortTitle(string Book books[],int num){
 	cout<<"List of books sorted by Title: "<<endl;
 	for(int i=0;i<num-1;i++)
 	{
