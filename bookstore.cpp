@@ -3,9 +3,9 @@
 using namespace std;
 struct BookList{
 	int Isbn;
-	char Title[30];
-	char Author[30];
-	char Publisher[30];
+	string Title;
+	string Author;
+	string Publisher;
 	int Publishing_Date;
 	int Num_of_page;
 	int Total_quantity;
@@ -91,6 +91,8 @@ class DlinkedList{
 	void search_by_isbn(int searchvalue);
 	void search_by_title(string SearchTitle);
 	void search_by_author(string SearchAuthor);
+	void sort_by_isbn();
+	void sort_by_title();
 };
 int search_book_menu();
 int sort_book_menu();
@@ -267,6 +269,7 @@ void DlinkedList::search_by_author(string SearchAuthor){
 }
 int sort_book_menu(){
 	int option,SortIsbn,SortTitle;
+	DlinkedList listt;
 	
 	while(true){		
 		cout<<"\t\t********************************************************************"<<endl;
@@ -282,14 +285,11 @@ int sort_book_menu(){
 		
 	switch(option){
 		case 1:
-			cout<<"Input Isbn of the book";
-			cin>>SortIsbn;
-			//sort_by_isbn(SortIsbn);
+			listt.sort_by_isbn();
 			break;
 		case 2:
-			cout<<"Input Title of the book";
-			cin>>SortTitle;
-			//sort_by_title(SortTitle);
+			
+			listt.sort_by_title();
 			break;
 		case 3:
 			main();
@@ -299,6 +299,130 @@ int sort_book_menu(){
 	}	
 }
 }//end of sort menu
+
+void DlinkedList::sort_by_isbn(){
+	
+ 	BookList *i, *j;
+    BookList* temp = head;
+	int num,option;
+	string y;
+    
+     for(i = temp; i->next != NULL; i=i->next)
+     {
+         for(j=i->next; j != NULL; j=j->next)
+         {
+             if(i->Isbn > j->Isbn)
+             {
+                 num = j->Isbn;
+                 j->Isbn = i->Isbn;
+                 i->Isbn= num;
+                 //
+                 y = j->Author;
+                 j->Author = i->Author;
+                 i->Author = y;
+                 
+                 num = j->Num_of_page;
+                 j->Num_of_page = i->Num_of_page;
+                 i->Num_of_page = num;
+                 //
+                 num = j->Publishing_Date;
+                 j->Publishing_Date = i->Publishing_Date;
+                 i->Publishing_Date = num;
+                 //
+                 num = j->Total_quantity;
+                 j->Total_quantity = i->Total_quantity;
+                 i->Total_quantity = num;
+                 //
+                 y = j->Title;
+                 j->Title = i->Title;
+                 i->Title = y;
+                 //
+                  y = j->Publisher;
+                 j->Publisher = i->Publisher;
+                 i->Publisher = y;
+             }
+         }
+     }
+     if (temp!=NULL){
+     	cout<<"\t the books are sorted successfully by Isbn"<<endl;
+     	cout<<"press 1 to display the sorted books by ISBN"<<endl;
+     	cout<<"press 0 to go back to menu"<<endl;
+     	cout<<"->";
+     	cin>>option;
+     	if(option == 1){
+     		display_data();
+		 }
+		 else{
+		 	main();
+		 }
+	 }
+	 else{
+	 	cout<<"no data"<<endl;
+	 }
+}
+
+void DlinkedList::sort_by_title(){
+		
+ 	BookList *i, *j;
+    BookList* temp = head;
+	int num,option;
+	string y;
+    
+     for(i = temp; i->next != NULL; i=i->next)
+     {
+         for(j=i->next; j != NULL; j=j->next)
+         {
+             if(i->Title > j->Title)
+             {
+             	 y = j->Title;
+                 j->Title = i->Title;
+                 i->Title = y;
+                 
+                 //
+                 y = j->Author;
+                 j->Author = i->Author;
+                 i->Author = y;
+                 
+                 num = j->Num_of_page;
+                 j->Num_of_page = i->Num_of_page;
+                 i->Num_of_page = num;
+                 //
+                 num = j->Publishing_Date;
+                 j->Publishing_Date = i->Publishing_Date;
+                 i->Publishing_Date = num;
+                 //
+                 num = j->Total_quantity;
+                 j->Total_quantity = i->Total_quantity;
+                 i->Total_quantity = num;
+                 //
+                 num = j->Isbn;
+                 j->Isbn = i->Isbn;
+                 i->Isbn= num;
+                 //
+                  y = j->Publisher;
+                 j->Publisher = i->Publisher;
+                 i->Publisher = y;
+             }
+         }
+     }
+     if (temp!=NULL){
+     	cout<<"\t the books are sorted successfully by Isbn"<<endl;
+     	cout<<"press 1 to display the sorted books by ISBN"<<endl;
+     	cout<<"press 0 to go back to menu"<<endl;
+     	cout<<"->";
+     	cin>>option;
+     	if(option == 1){
+     		display_data();
+		 }
+		 else{
+		 	main();
+		 }
+	 }
+	 else{
+	 	cout<<"no data"<<endl;
+	 }
+	
+}
 
 int update_menu(){
 	DlinkedList listt;
