@@ -1,5 +1,7 @@
 #include<iostream>
 #include<string>
+#include<iomanip>
+#include <bits/stdc++.h>
 using namespace std;
 struct BookList{
 	int Isbn;
@@ -38,7 +40,7 @@ class DlinkedList{
 		if(head == NULL){
 			head = book_data;
 		}
-		
+	   	
 		return book_data;
 	}
 	void insert_first(){
@@ -58,7 +60,7 @@ class DlinkedList{
 		}
 		else{
 			BookList *temp = input_data();
-			while(head){
+			while(head!=NULL){
 				if (head->next == NULL){
 					head->next == temp->prev;   
 				}
@@ -68,7 +70,6 @@ class DlinkedList{
 			
 		}
 	}
-
 	
 	void display_data(){
 		if(head  == NULL){
@@ -93,10 +94,15 @@ class DlinkedList{
 	void search_by_author(string SearchAuthor);
 	void sort_by_isbn();
 	void sort_by_title();
+	void deleteNode(BookList** head_ref, BookList* del);
+	void delete_isbn(int);
 };
 int search_book_menu();
 int sort_book_menu();
 int update_menu();
+void delete_book();
+void deleteNodeAtGivenPos(int value,int size);
+void remove_menu();
 
 int main(){
 	int option;
@@ -448,7 +454,8 @@ int update_menu(){
 			listt.display_data();
 			break;
 		case 3:
-			main();
+			//remove_menu();
+			delete_book();
 			break;
 		case 4:
 			main();
@@ -458,6 +465,133 @@ int update_menu(){
 		default:
 			cout<<"Please Input A valid Choice"<<endl<<endl;
 	}	
+}	
 }
+
+void remove_menu(){
+	DlinkedList listt;
+	int option;
+		while(true){		
+		cout<<"\t\t********************************************************************"<<endl;
+		cout<<"\t\t\tDelete book menu"<<endl;
+		cout<<"\t\t********************************************************************"<<endl<<endl;
+	
+		cout<<"enter 1 to delete book using isbn number"<<endl;
+		cout<<"enter 2 to delete book using title"<<endl;
+		cout<<"enter 3 to Go back"<<endl;
+		cout<<"Enter Choice:";
+		cin>>option;
+		//system("cls");
+	switch(option){
+		case 1:
+			//listt.delete_isbn();
+			break;
+		case 2:
+			listt.display_data();
+			break;
+		case 3:
+			main();
+		default:
+			cout<<"Please Input A valid Choice"<<endl<<endl;
+	}	
 	
 }
+}
+void DlinkedList::delete_isbn(int size){
+	int data,value=0;
+	BookList* temp = head;
+	BookList* curr = head;
+	DlinkedList listt;
+    cout<<"Input ISBN of the book: "<<endl;
+    cin>>data;
+    for (int i = 1; temp != NULL && i <= size+1; i++){    
+		while (data == temp->Isbn){
+			if (head->next == NULL){
+				BookList* del = head;
+				head = head->next;
+				delete del;
+				break;
+				}
+			if(temp->next == NULL){
+				BookList* deletenode = temp;
+				curr->next = temp->next;
+				delete deletenode;
+				break;
+			}	
+    		temp = temp->next;
+    		curr->next = temp;
+    		cout<<"congra"<<endl;
+    		break;
+    	
+		}
+    	curr = temp;
+		temp = temp->next;
+		}
+	
+}
+void delete_book(){
+	DlinkedList listt;
+	
+	
+	BookList* temp = head;
+	int i=0,value;
+	cout<<"| Title |"<<setw(6);
+	cout<<"| ISBN  |"<<setw(6);
+	cout<<"| Index |"<<setw(6);	
+	 if (temp != NULL){
+	 	while(temp != NULL ){
+	 		i++;
+	 			
+	 			cout<<endl<<temp->Title<<setw(8);
+	 			cout<<temp->Isbn<<setw(8);
+	 			cout<<i<<endl;
+	 			cout<<setw(8);
+			 temp = temp->next;
+		 }
+
+	 //cout<<"input index to Delete the Book permanently: ";
+	 //cin>>value;
+	 //listt.delet_data(value,i);
+	 listt.delete_isbn(i);
+	 //deleteNodeAtGivenPos(value,i);
+	 }
+	 else{
+	 	cout<<endl<<"no data"<<endl;
+	 }
+	
+}
+
+void deleteNodeAtGivenPos(int n,int size){
+	BookList* temp = head;
+	BookList* curr = head;
+	DlinkedList listt;
+    /* if list in NULL or invalid position is given */
+    //if (*head_ref == NULL || n <= 0)
+      //  return;
+    int i;
+ 
+    /* traverse up to the node at position 'n' from
+       the beginning */
+    for (int i = 1; temp != NULL && i < size; i++){
+    	if (n == 1) {
+    		temp = temp->next;
+    		break;
+		}
+		if (i == n){
+    		temp = temp->next;
+    		curr->next = temp;
+    		
+    		//delete temp;
+    		cout<<"congra"<<endl;
+    		break;
+		}
+    	curr = temp;
+    	//cout<<curr->Isbn<<endl;
+		temp = temp->next;
+		//cout<<temp->Isbn
+		
+		}
+		
+	
+}
+ 
