@@ -94,15 +94,14 @@ class DlinkedList{
 	void sort_by_isbn();
 	void sort_by_title();
 
-	void deleteNode(BookList** head_ref, BookList* del);
 	void delete_isbn(int,int);
 	void delete_title(int,string);
 	void delete_book(int);
+	void quantity_update();
 };
 int search_book_menu();
 int sort_book_menu();
 int update_menu();
-void deleteNodeAtGivenPos(int value,int size);
 void remove_menu();
 
 int main(){
@@ -458,7 +457,7 @@ int update_menu(){
 			remove_menu();
 			break;
 		case 5:
-			main();
+			listt.quantity_update();
 			break;
 		case 6:
 			main();
@@ -619,4 +618,7 @@ void DlinkedList::delete_title(int size, string title){
 		    cout<<"book with Title of "<<title<<" deleted successfully"<<endl<<endl;
 		}
 }
+void DlinkedList::quantity_update(){
 
+
+}
