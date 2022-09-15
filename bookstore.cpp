@@ -96,7 +96,8 @@ class DlinkedList{
 
 	void deleteNode(BookList** head_ref, BookList* del);
 	void delete_isbn(int,int);
-	void delete_book();
+	void delete_title(int,string);
+	void delete_book(int);
 };
 int search_book_menu();
 int sort_book_menu();
@@ -483,13 +484,14 @@ void remove_menu(){
 		//system("cls");
 	switch(option){
 		case 1:
-            listt.delete_book();
+            listt.delete_book(option);
 			break;
 		case 2:
-			listt.display_data();
+			listt.delete_book(option);
 			break;
 		case 3:
-			main();
+			update_menu();
+			break;
 		default:
 			cout<<"Please Input A valid Choice"<<endl<<endl;
 	}
@@ -539,9 +541,11 @@ void DlinkedList::delete_isbn(int size,int value){
 		    cout<<"book with ISBN of "<<value<<" deleted successfully"<<endl<<endl;
 		}
 }
-void DlinkedList::delete_book(){
+void DlinkedList::delete_book(int option){
 	BookList* temp = head;
 	int i=0,value;
+	string title;
+
 	cout<<"| Title |"<<setw(6);
 	cout<<"| ISBN  |"<<setw(6);
 	cout<<"| Index |"<<setw(6);
@@ -560,45 +564,59 @@ void DlinkedList::delete_book(){
 			 temp = temp->next;
 		 }
       cout<<endl;
+      if(option == 1){
 	  cout<<"input Isbn of the Book: ";
 	  cin>>value;
 	  delete_isbn(i,value);
-
+      }
+      if(option == 2){
+        cout<<"Input Title of the book: ";
+        cin>>title;
+        delete_title(i,title);
+      }
 	 }
-
 }
+void DlinkedList::delete_title(int size, string title){
+	int flag=0;
+	BookList* temp = head;
+	BookList* curr = head;
+    for (int i = 1; temp != NULL && i<= size+1; i++){
+		while (title == temp->Title){
+			flag = 1;
+			if (head->Title == title){
+                BookList* first = head;
+                head= head->next;
+                cout<<"first";
+                delete first;
+                break;
+			}
+			if (temp->next == NULL){
+				BookList* lastnode = temp;
+				temp = curr;
+				temp->next=NULL;
+				cout<<"sd"<<endl;
+				delete lastnode;
+				break;
+				}
 
-void deleteNodeAtGivenPos(int n,int size){
-	BookList* temp = 0;
-	BookList* curr = 0;
-	DlinkedList listt;
-    /* if list in NULL or invalid position is given */
-    //if (*head_ref == NULL || n <= 0)
-      //  return;
-    int i;
+			if(temp->next != NULL){
+				BookList* delete_node = temp;
 
-    /* traverse up to the node at position 'n' from
-       the beginning */
-    for (int i = 1; temp != NULL && i < size; i++){
-    	if (n == 1) {
-    		temp = temp->next;
-    		break;
-		}
-		if (i == n){
-    		temp = temp->next;
-    		curr->next = temp;
-
-    		//delete temp;
-    		cout<<"congra"<<endl;
-    		break;
+    			temp = temp->next;
+    			curr->next=temp;
+                temp->prev = curr;
+    			cout<<"fuck"<<endl;
+    			delete delete_node;
+    			break;
+			}
 		}
     	curr = temp;
-    	//cout<<curr->Isbn<<endl;
 		temp = temp->next;
-		//cout<<temp->Isbn
-
 		}
-
-
+		if(flag == 0){
+			cout<<" Book not found please try again!"<<endl;
+		}else{
+		    cout<<"book with Title of "<<title<<" deleted successfully"<<endl<<endl;
+		}
 }
 
