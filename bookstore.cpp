@@ -87,7 +87,34 @@ class DlinkedList{
 			}
 		}
 	}
-	void search_by_isbn(int searchvalue);
+	BookList* search_by_isbn(int searchvalue){
+
+            BookList* temp = head;
+            int i=0,value;
+             if (temp != NULL){
+                while(temp != NULL ){
+                    i++;
+                    if (temp->Isbn == searchvalue){
+                        value = 5;
+                        cout<<"\n Title of the book:"<<temp->Title;
+                        cout<<"\n Author of the book:"<<temp->Author;
+                        cout<<"\n Publisher of the book:"<<temp->Publisher;
+                        cout<<"\n publishing date of the book:"<<temp->Publishing_Date;
+                        cout<<"\n Total page:"<<temp->Num_of_page;
+                        cout<<"\n Quantity of the book:"<<temp->Total_quantity;
+                        cout<<"\n International standard book number:"<<temp->Isbn<<endl<<endl;
+                        return temp;//hot fix needed
+                        break;
+                     }
+                     temp = temp->next;
+                 }
+                 if (value == 5){
+                    cout<<searchvalue<<" is found at index = "<<i<<".\n";
+                 }else{
+                    cout<<searchvalue<<" is not found in the list.\n";
+                 }
+             }
+}
 	void search_by_title(string SearchTitle);
 	void search_by_author(string SearchAuthor);
 
@@ -187,33 +214,6 @@ int search_book_menu(){
 }
 }
 
-void DlinkedList::search_by_isbn(int searchvalue){
-
-	BookList* temp = head;
-	int i=0,value;
-	 if (temp != NULL){
-	 	while(temp != NULL ){
-	 		i++;
-	 		if (temp->Isbn == searchvalue){
-	 			value = 5;
-	 			cout<<"\n Title of the book:"<<temp->Title;
-				cout<<"\n Author of the book:"<<temp->Author;
-				cout<<"\n Publisher of the book:"<<temp->Publisher;
-				cout<<"\n publishing date of the book:"<<temp->Publishing_Date;
-				cout<<"\n Total page:"<<temp->Num_of_page;
-				cout<<"\n Quantity of the book:"<<temp->Total_quantity;
-				cout<<"\n International standard book number:"<<temp->Isbn<<endl<<endl;
-	 			break;
-			 }
-			 temp = temp->next;
-		 }
-		 if (value == 5){
-		 	cout<<searchvalue<<" is found at index = "<<i<<".\n";
-		 }else{
-		 	cout<<searchvalue<<" is not found in the list.\n";
-		 }
-	 }
-}
 
 void DlinkedList::search_by_title(string SearchTitle){
 	BookList* temp = head;
@@ -619,6 +619,30 @@ void DlinkedList::delete_title(int size, string title){
 		}
 }
 void DlinkedList::quantity_update(){
+    BookList* i, *j;
+    BookList* temp = head;
+	int num,amount,isbn;
+	string y;
+    cout<<"input isbn of the book to edit its quantites"<<endl;
+    cin>>isbn;
+    i = search_by_isbn(isbn);
+    cout<<"there are "<< i->Total_quantity<<" of books found in the library "<<endl;
+    cout<<"to increase the book quantity press 1:"<<endl;
+    cout<<"to decrease the book quantity press 2:"<<endl;
+    cin>>num;
+    if(num == 1){
+        cout<<"how many books u want to add ";
+        cin>>amount;
+        i->Total_quantity += amount;
+    }
+    if(num == 2){
+        cout<<"how many books u want to remove ";
+        cin>>amount;
+        if(i->Total_quantity< amount){
+            cout<<"not enough books";
 
-
+        }else{
+            i->Total_quantity -= amount;
+            }
+}
 }
