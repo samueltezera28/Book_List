@@ -634,6 +634,10 @@ void DlinkedList::quantity_update(){
     cout<<"input isbn of the book to edit its quantites"<<endl;
     cin>>isbn;
     i = search_by_isbn(isbn);
+    if (i == NULL){
+    	cout<<"book not found !!"<<endl;
+	}else{
+	
     cout<<"there are "<< i->Total_quantity<<" of books found in the library "<<endl;
     cout<<"to increase the book quantity press 1:"<<endl;
     cout<<"to decrease the book quantity press 2:"<<endl;
@@ -642,6 +646,7 @@ void DlinkedList::quantity_update(){
         cout<<"how many books u want to add ";
         cin>>amount;
         i->Total_quantity += amount;
+        cout<<"Number of Books updated Successfully."<<endl;
     }
     if(num == 2){
         cout<<"how many books u want to remove ";
@@ -651,6 +656,8 @@ void DlinkedList::quantity_update(){
 
         }else{
             i->Total_quantity -= amount;
+            cout<<"Number of Books updated Successfully."<<endl;           
             }
+}
 }
 }
