@@ -133,6 +133,7 @@ class DlinkedList{
 	void delete_book(int);
 	void quantity_update();
 };
+//declaration of sub menu functions
 int search_book_menu();
 int sort_book_menu();
 int update_menu();
