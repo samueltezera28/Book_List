@@ -2,6 +2,7 @@
 #include<string>
 #include<iomanip>
 #include <bits/stdc++.h>
+#include<fstream>
 using namespace std;
 
 struct BookList{
@@ -25,6 +26,7 @@ class DlinkedList{
 
 	 }
 	BookList* input_data(){
+	    ofstream outfile;
 		BookList* book_data = new BookList;
 		cout<<"\n enter Isbn: ";cin>>book_data->Isbn;
 		cout<<"\n enter Title of the book: ";cin>>book_data->Title;
@@ -37,8 +39,10 @@ class DlinkedList{
 		book_data->next = NULL;
 		book_data->prev = NULL;
 
+
 		return book_data;
 	}
+	//inserting in the first position of the node
 	void insert_first(){
 
 		if(head == NULL){
@@ -90,6 +94,7 @@ class DlinkedList{
 	BookList* search_by_isbn(int searchvalue){
 
             BookList* temp = head;
+            BookList* qtemp;
             int i=0,value;
              if (temp != NULL){
                 while(temp != NULL ){
@@ -103,7 +108,7 @@ class DlinkedList{
                         cout<<"\n Total page:"<<temp->Num_of_page;
                         cout<<"\n Quantity of the book:"<<temp->Total_quantity;
                         cout<<"\n International standard book number:"<<temp->Isbn<<endl<<endl;
-                        return temp;//hot fix needed
+                        qtemp = temp;//hot fix needed
                         break;
                      }
                      temp = temp->next;
@@ -113,6 +118,7 @@ class DlinkedList{
                  }else{
                     cout<<searchvalue<<" is not found in the list.\n";
                  }
+                 return qtemp;
              }
 }
 	void search_by_title(string SearchTitle);
