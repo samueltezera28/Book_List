@@ -56,6 +56,7 @@ class DlinkedList{
 		head = newNode;
 	   }
     }
+    //inserting last
 	void inser_last(){
 		if(head == NULL){
 			head = input_data();
