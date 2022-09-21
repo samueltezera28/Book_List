@@ -464,42 +464,47 @@ void DlinkedList::sort_by_title(){
 		 }
 	 }
 	 else{
-	 	cout<<"no data"<<endl;
+	 	cout<<"Sorry No Data To Sort"<<endl;
 	 }
 
 }
 
 int update_menu(){
-	DlinkedList listt;
+    /* this menu function has a lot of sub function to update books info
+    * ->inserting at the start of the list
+    * ->inserting last of the list
+    * ->remove any book
+    * ->update quantity of books
+    */
+	DlinkedList listt;//assign head pointer to temp
 	int option;
 		while(true){
 		cout<<"\t\t********************************************************************"<<endl;
 		cout<<"\t\t\tUpdate book information menu"<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
 
-		cout<<"enter 1 to Insert book at the start"<<endl;
-		cout<<"enter 2 to Insert book at the end"<<endl;
-		cout<<"enter 3 to remove book"<<endl;
-		cout<<"enter 4 update quantity of a given book"<<endl;
-		cout<<"enter 5 to Go back"<<endl;
+		cout<<"1. Insert book at the start"<<endl;
+		cout<<"2. Insert book at the end"<<endl;
+		cout<<"3. Remove book"<<endl;
+		cout<<"4. Update quantity of a given book"<<endl;
+		cout<<"5. Go back"<<endl;
 		cout<<"Enter Choice:";
 		cin>>option;
-		//system("cls");
 	switch(option){
 		case 1:
-			listt.insert_first();
+			listt.insert_first();//inserting first of the list
 			break;
 		case 2:
-			listt.inser_last();
+			listt.inser_last(); //inserting last
 			break;
 		case 3:
-			remove_menu();
+			remove_menu();//calling remove sum menu
 			break;
 		case 4:
-			listt.quantity_update();
+			listt.quantity_update();//update quantity of book by using Isbn
 			break;
 		case 5:
-			main();
+			main();//return to main
 		default:
 			cout<<"Please Input A valid Choice"<<endl<<endl;
 	}
