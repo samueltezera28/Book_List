@@ -406,11 +406,12 @@ void DlinkedList::sort_by_isbn(){
 }
 
 void DlinkedList::sort_by_title(){
-
- 	BookList *i, *j;
-    BookList* temp = head;
-	int num,option;
-	string y;
+    // sotrting by title in ascending  order
+    // it uses Bubble sort algorithm
+ 	BookList *i, *j;//declaration of pointer i & j that points to BookList structure
+    BookList* temp = head;//assign head pointer to temp
+	int num,option;//declaration of integer varaiables
+	string y;//declaration of string variables
 
      for(i = temp; i->next != NULL; i=i->next)
      {
@@ -421,31 +422,31 @@ void DlinkedList::sort_by_title(){
              	 y = j->Title;
                  j->Title = i->Title;
                  i->Title = y;
-
-                 //
+                 //swap title
                  y = j->Author;
                  j->Author = i->Author;
                  i->Author = y;
-
+                //swap author
                  num = j->Num_of_page;
                  j->Num_of_page = i->Num_of_page;
                  i->Num_of_page = num;
-                 //
+                 //swap num of page
                  num = j->Publishing_Date;
                  j->Publishing_Date = i->Publishing_Date;
                  i->Publishing_Date = num;
-                 //
+                 //swap publishing date
                  num = j->Total_quantity;
                  j->Total_quantity = i->Total_quantity;
                  i->Total_quantity = num;
-                 //
+                 //swap total quantity
                  num = j->Isbn;
                  j->Isbn = i->Isbn;
                  i->Isbn= num;
-                 //
+                 //swap isbn
                   y = j->Publisher;
                  j->Publisher = i->Publisher;
                  i->Publisher = y;
+                 //swap publisher
              }
          }
      }
@@ -456,10 +457,10 @@ void DlinkedList::sort_by_title(){
      	cout<<"->";
      	cin>>option;
      	if(option == 1){
-     		display_data();
+     		display_data();//display the sorted data
 		 }
 		 else{
-		 	main();
+		 	main();//return main
 		 }
 	 }
 	 else{
