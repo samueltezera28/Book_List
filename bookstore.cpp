@@ -30,7 +30,6 @@ class DlinkedList{
 
 	 }
 	BookList* input_data(){
-	    ofstream outfile;
 		BookList* book_data = new BookList;
 		cout<<"\n enter Isbn: ";cin>>book_data->Isbn;
 		cout<<"\n enter Title of the book: ";cin>>book_data->Title;
