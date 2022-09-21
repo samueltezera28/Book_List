@@ -488,6 +488,7 @@ int update_menu(){
 		cout<<"3. Remove book"<<endl;
 		cout<<"4. Update quantity of a given book"<<endl;
 		cout<<"5. Go back"<<endl;
+
 		cout<<"Enter Choice:";
 		cin>>option;
 	switch(option){
@@ -512,15 +513,15 @@ int update_menu(){
 }
 
 void remove_menu(){
-	DlinkedList listt;
+	DlinkedList listt;// create an object of the class
 	int option;
 		while(true){
 		cout<<"\t\t********************************************************************"<<endl;
 		cout<<"\t\t\tDelete book menu"<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
-		cout<<"enter 1 to delete book using Isbn number"<<endl;
-		cout<<"enter 2 to delete book using title"<<endl;
-		cout<<"enter 3 to Go back"<<endl;
+		cout<<"\n1. Delete Book By Isbn"<<endl;
+		cout<<"\n2. Delete Book By Title"<<endl;
+		cout<<"\n3. Go back"<<endl;
 		cout<<"Enter Choice:";
 		cin>>option;
 		//system("cls");
@@ -542,8 +543,8 @@ void remove_menu(){
 }
 void DlinkedList::delete_isbn(int size,int value){
 	int data,flag=0;
-	BookList* temp = head;
-	BookList* curr = head;
+	BookList* temp = head;//assign head pointer to temp
+	BookList* curr = head;//assign head pointer to curr
     for (int i = 1; temp != NULL && i <= size+1; i++){
 		while (value == temp->Isbn){
 			flag = 1;
