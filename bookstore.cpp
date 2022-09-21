@@ -533,13 +533,48 @@ void remove_menu(){
 			listt.delete_book(option);
 			break;
 		case 3:
-			update_menu();
+			update_menu();//return to upper menu
 			break;
 		default:
 			cout<<"Please Input A valid Choice"<<endl<<endl;
 	}
 
 }
+}
+void DlinkedList::delete_book(int option){
+	BookList* temp = head;//assign head pointer to temp
+	int i=0,value;//declaration of integers
+	string title;//declaration of string
+
+	cout<<"| Title |"<<setw(6);
+	cout<<"| ISBN  |"<<setw(6);
+	cout<<"| Index |"<<setw(6);
+	 if (temp == NULL){
+        cout<<endl<<endl<<endl;
+        cout<<"No Books to delete"<<endl;
+	 }
+	 else{
+	 	while(temp != NULL ){
+	 		i++;
+
+	 			cout<<endl<<temp->Title<<setw(8);
+	 			cout<<temp->Isbn<<setw(8);
+	 			cout<<i<<endl;
+	 			cout<<setw(8);
+			 temp = temp->next;
+		 }
+      cout<<endl;
+      if(option == 1){
+	  cout<<"input Isbn of the Book: ";
+	  cin>>value;
+	  delete_isbn(i,value);
+      }
+      if(option == 2){
+        cout<<"Input Title of the book: ";
+        cin>>title;
+        delete_title(i,title);
+      }
+	 }
 }
 void DlinkedList::delete_isbn(int size,int value){
 	int data,flag=0;
@@ -583,41 +618,6 @@ void DlinkedList::delete_isbn(int size,int value){
 		}else{
 		    cout<<"book with ISBN of "<<value<<" deleted successfully"<<endl<<endl;
 		}
-}
-void DlinkedList::delete_book(int option){
-	BookList* temp = head;
-	int i=0,value;
-	string title;
-
-	cout<<"| Title |"<<setw(6);
-	cout<<"| ISBN  |"<<setw(6);
-	cout<<"| Index |"<<setw(6);
-	 if (temp == NULL){
-        cout<<endl<<endl<<endl;
-        cout<<"No Books to delete"<<endl;
-	 }
-	 else{
-	 	while(temp != NULL ){
-	 		i++;
-
-	 			cout<<endl<<temp->Title<<setw(8);
-	 			cout<<temp->Isbn<<setw(8);
-	 			cout<<i<<endl;
-	 			cout<<setw(8);
-			 temp = temp->next;
-		 }
-      cout<<endl;
-      if(option == 1){
-	  cout<<"input Isbn of the Book: ";
-	  cin>>value;
-	  delete_isbn(i,value);
-      }
-      if(option == 2){
-        cout<<"Input Title of the book: ";
-        cin>>title;
-        delete_title(i,title);
-      }
-	 }
 }
 void DlinkedList::delete_title(int size, string title){
 	int flag=0;
