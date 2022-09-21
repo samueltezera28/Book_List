@@ -483,11 +483,11 @@ int update_menu(){
 		cout<<"\t\t\tUpdate book information menu"<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
 
-		cout<<"1. Insert book at the start"<<endl;
-		cout<<"2. Insert book at the end"<<endl;
-		cout<<"3. Remove book"<<endl;
-		cout<<"4. Update quantity of a given book"<<endl;
-		cout<<"5. Go back"<<endl;
+		cout<<"\n1. Insert book at the start"<<endl;
+		cout<<"\n2. Insert book at the end"<<endl;
+		cout<<"\n3. Remove book"<<endl;
+		cout<<"\n4. Update quantity of a given book"<<endl;
+		cout<<"\n5. Go back"<<endl;
 
 		cout<<"Enter Choice:";
 		cin>>option;
@@ -545,27 +545,26 @@ void DlinkedList::delete_book(int option){
 	BookList* temp = head;//assign head pointer to temp
 	int i=0,value;//declaration of integers
 	string title;//declaration of string
-
-	cout<<"| Title |"<<setw(6);
-	cout<<"| ISBN  |"<<setw(6);
-	cout<<"| Index |"<<setw(6);
 	 if (temp == NULL){
         cout<<endl<<endl<<endl;
         cout<<"No Books to delete"<<endl;
 	 }
 	 else{
+            cout<<"| Title |"<<setw(6);
+            cout<<"| ISBN  |"<<setw(6);
+            cout<<"| Index |"<<setw(6);
 	 	while(temp != NULL ){
-	 		i++;
+                i++;//to count to size of the list
 
 	 			cout<<endl<<temp->Title<<setw(8);
 	 			cout<<temp->Isbn<<setw(8);
 	 			cout<<i<<endl;
 	 			cout<<setw(8);
-			 temp = temp->next;
+                temp = temp->next;
 		 }
       cout<<endl;
       if(option == 1){
-	  cout<<"input Isbn of the Book: ";
+	  cout<<"Input Isbn of the Book: ";
 	  cin>>value;
 	  delete_isbn(i,value);
       }
@@ -577,6 +576,7 @@ void DlinkedList::delete_book(int option){
 	 }
 }
 void DlinkedList::delete_isbn(int size,int value){
+    //deletes the book with a given isbn number
 	int data,flag=0;
 	BookList* temp = head;//assign head pointer to temp
 	BookList* curr = head;//assign head pointer to curr
@@ -584,9 +584,10 @@ void DlinkedList::delete_isbn(int size,int value){
 		while (value == temp->Isbn){
 			flag = 1;
 			if (head->Isbn == value){
-                BookList* first = head;
+                //to delete if the value is first
+                BookList* first = head;//assign the head pointer to first and delete it after swapping
                 head= head->next;
-                cout<<"first";
+                head->prev=NULL;
                 delete first;
                 break;
 			}
