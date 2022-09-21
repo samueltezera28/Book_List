@@ -177,7 +177,7 @@ int main(){
 		cout<<"5. Exit\n"<<endl;
 		cout<<"Enter your Choice:";
 		cin>>option;
-		//system("cls");
+		system("cls");
 
 	switch(option){
 		case 1:
@@ -204,22 +204,28 @@ int main(){
 
 
 int search_book_menu(){
+    /* search book menu
+    * while loop to display the menu of different searching method
+    * search_by_isbn to search by isbn of the book
+    * search_by_title to search by title of the book
+    * search_by_author to search by the name of the author
+    * main() to return
+    */
 	string SearchTitle, SearchAuthor;
 	int option, SearchIsbn;
-	DlinkedList list;
+	DlinkedList list; // create an object of the class
 
 	while(true){
 		cout<<"\t\t********************************************************************"<<endl;
 		cout<<"\t\t\tWellcome To Search menu"<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
 
-		cout<<"enter 1 to Search by ISBN"<<endl;
-		cout<<"enter 2 to Search by Title"<<endl;
-		cout<<"enter 3 to Search by Author"<<endl;
-		cout<<"enter 4 to Go back"<<endl;
+		cout<<"1. Search by ISBN"<<endl;
+		cout<<"2. Search by Title"<<endl;
+		cout<<"3. Search by Author"<<endl;
+		cout<<"4. Go back"<<endl;
 		cout<<"Enter Choice:";
 		cin>>option;
-		//system("cls");
 
 	switch(option){
 		case 1:
@@ -248,23 +254,26 @@ int search_book_menu(){
 
 
 void DlinkedList::search_by_title(string SearchTitle){
-	BookList* temp = head;
-	int i,value;
+    //linear search is used to find the value.
+
+	BookList* temp = head;// assigning head pointer to temp
+	int i=0,value;
 	 if (temp != NULL){
 	 	while(temp != NULL ){
 	 		i++;
 	 		if (temp->Title == SearchTitle){
+                    //value must be found to display the book
 	 			value = 5;
-	 			cout<<"\n Title of the book:"<<temp->Title;
-				cout<<"\n Author of the book:"<<temp->Author;
-				cout<<"\n Publisher of the book:"<<temp->Publisher;
-				cout<<"\n publishing date of the book:"<<temp->Publishing_Date;
-				cout<<"\n Total page:"<<temp->Num_of_page;
-				cout<<"\n Quantity of the book:"<<temp->Total_quantity;
-				cout<<"\n International standard book number:"<<temp->Isbn<<endl<<endl;
+	 			cout<<"\n Title: "<<temp->Title;
+				cout<<"\n Author: "<<temp->Author;
+				cout<<"\n Publisher: "<<temp->Publisher;
+				cout<<"\n publishing date: "<<temp->Publishing_Date;
+				cout<<"\n Total page: "<<temp->Num_of_page;
+				cout<<"\n Quantity: "<<temp->Total_quantity;
+				cout<<"\n ISBN: "<<temp->Isbn<<endl<<endl;
 	 			break;
 			 }
-			 temp = temp->next;
+			 temp = temp->next;//assign next pointer to temp
 		 }
 		 if (value == 5){
 		 	cout<<SearchTitle<<" is found at index = "<<i<<".\n";
@@ -275,23 +284,25 @@ void DlinkedList::search_by_title(string SearchTitle){
 
 }
 void DlinkedList::search_by_author(string SearchAuthor){
-	BookList* temp = head;
+    //linear search is used to find the value.
+	BookList* temp = head;// assigning head pointer to temp
 	int i,value;
 	 if (temp != NULL){
 	 	while(temp != NULL ){
 	 		i++;
 	 		if (temp->Author == SearchAuthor){
+                //value must be found to display the book
 	 			value = 5;
-	 			cout<<"\n Title of the book:"<<temp->Title;
-				cout<<"\n Author of the book:"<<temp->Author;
-				cout<<"\n Publisher of the book:"<<temp->Publisher;
-				cout<<"\n publishing date of the book:"<<temp->Publishing_Date;
-				cout<<"\n Total page:"<<temp->Num_of_page;
-				cout<<"\n Quantity of the book:"<<temp->Total_quantity;
+	 			cout<<"\n Title: "<<temp->Title;
+				cout<<"\n Author: "<<temp->Author;
+				cout<<"\n Publisher: "<<temp->Publisher;
+				cout<<"\n publishing date :"<<temp->Publishing_Date;
+				cout<<"\n Total page: "<<temp->Num_of_page;
+				cout<<"\n Quantity: "<<temp->Total_quantity;
 				cout<<"\n International standard book number:"<<temp->Isbn<<endl<<endl;
 	 			break;
 			 }
-			 temp = temp->next;
+			 temp = temp->next;//assign next pointer to temp
 		 }
 		 if (value == 5){
 		 	cout<<SearchAuthor<<" is found at index = "<<i<<".\n";
@@ -300,33 +311,31 @@ void DlinkedList::search_by_author(string SearchAuthor){
 		 }
 	 }
 
-}
+}//end of function
 int sort_book_menu(){
-	int option,SortIsbn,SortTitle;
-	DlinkedList listt;
+	int option,SortIsbn,SortTitle;//declaration of integer variables
+	DlinkedList listt;// create an object of the class
 
 	while(true){
 		cout<<"\t\t********************************************************************"<<endl;
 		cout<<"\t\t\tWellcome To Sorting menu"<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
 
-		cout<<"enter 1 to Sort by ISBN"<<endl;
-		cout<<"enter 2 to Sort by Title"<<endl;
-		cout<<"enter 3 to Go back"<<endl;
+		cout<<"1. Sort by ISBN"<<endl;
+		cout<<"2. Sort by Title"<<endl;
+		cout<<"3. Go back"<<endl;
 		cout<<"Enter Choice:";
 		cin>>option;
-		//system("cls");
 
 	switch(option){
 		case 1:
-			listt.sort_by_isbn();
+			listt.sort_by_isbn();//sorting by isbn
 			break;
 		case 2:
-
-			listt.sort_by_title();
+			listt.sort_by_title();//sorting by title
 			break;
 		case 3:
-			main();
+			main();//return to main
 			break;
 		default:
 			cout<<"Please Input A valid Choice"<<endl<<endl;
@@ -335,45 +344,47 @@ int sort_book_menu(){
 }//end of sort menu
 
 void DlinkedList::sort_by_isbn(){
-
- 	BookList *i, *j;
-    BookList* temp = head;
-	int num,option;
-	string y;
+    // sotrting by isbn in ascending  order
+    // it uses Bubble sort algorithm
+ 	BookList *i, *j; //declaration of pointer i & j that points to BookList structure
+    BookList* temp = head; //assign head pointer to temp
+	int num,option;//declaration of integer varaiables
+	string y;//declaration of string variables
 
      for(i = temp; i->next != NULL; i=i->next)
      {
          for(j=i->next; j != NULL; j=j->next)
          {
-             if(i->Isbn > j->Isbn)
+             if(i->Isbn > j->Isbn)//bubble sort swap starts if this condition is true
              {
                  num = j->Isbn;
                  j->Isbn = i->Isbn;
                  i->Isbn= num;
-                 //
+                 //swap isbn
                  y = j->Author;
                  j->Author = i->Author;
                  i->Author = y;
-
+                //swap author
                  num = j->Num_of_page;
                  j->Num_of_page = i->Num_of_page;
                  i->Num_of_page = num;
-                 //
+                 //swap number of page
                  num = j->Publishing_Date;
                  j->Publishing_Date = i->Publishing_Date;
                  i->Publishing_Date = num;
-                 //
+                 // swap publishing date
                  num = j->Total_quantity;
                  j->Total_quantity = i->Total_quantity;
                  i->Total_quantity = num;
-                 //
+                 //swap total quantity
                  y = j->Title;
                  j->Title = i->Title;
                  i->Title = y;
-                 //
+                 //swap title
                   y = j->Publisher;
                  j->Publisher = i->Publisher;
                  i->Publisher = y;
+                 //swap publisher
              }
          }
      }
@@ -381,17 +392,16 @@ void DlinkedList::sort_by_isbn(){
      	cout<<"\t the books are sorted successfully by Isbn"<<endl;
      	cout<<"press 1 to display the sorted books by ISBN"<<endl;
      	cout<<"press 0 to go back to menu"<<endl;
-     	cout<<"->";
      	cin>>option;
      	if(option == 1){
-     		display_data();
+     		display_data();//display daata
 		 }
 		 else{
-		 	main();
+		 	main();//return to main
 		 }
 	 }
 	 else{
-	 	cout<<"no data"<<endl;
+	 	cout<<"Sorry No Data To Sort"<<endl;
 	 }
 }
 
