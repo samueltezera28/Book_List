@@ -619,42 +619,41 @@ void DlinkedList::delete_isbn(int size,int value){
 		}
 }
 void DlinkedList::delete_title(int size, string title){
-    //deletes the book with a given isbn number
+    //deletes the book with a given Title of the book
 	int flag=0;
-	BookList* temp = head;
-	BookList* curr = head;
+	BookList* temp = head;//assign head pointer to temp
+	BookList* curr = head;//assign head pointer to curr
     for (int i = 1; temp != NULL && i<= size+1; i++){
 		while (title == temp->Title){
 			flag = 1;
 			if (head->Title == title){
-                BookList* first = head;
+                //to delete if the value is first of the list
+                BookList* first = head;//assign the head pointer to first and delete it after swapping is done
                 head= head->next;
-                cout<<"first";
                 delete first;
                 break;
 			}
 			if (temp->next == NULL){
-				BookList* lastnode = temp;
+			    //to delete if the value is last of the list
+				BookList* lastnode = temp;//assign the head pointer to lastnode pointer and delete it after swapping is done
 				temp = curr;
 				temp->next=NULL;
-				cout<<"sd"<<endl;
-				delete lastnode;
+				delete lastnode;//delete
 				break;
 				}
 
 			if(temp->next != NULL){
-				BookList* delete_node = temp;
-
+                //to delete if the value is in the middle of the list
+				BookList* delete_node = temp;//assign the head pointer to delete_node pointer and delete it after swapping is done
     			temp = temp->next;
     			curr->next=temp;
                 temp->prev = curr;
-    			cout<<"fuck"<<endl;
-    			delete delete_node;
+    			delete delete_node;//delete
     			break;
 			}
 		}
-    	curr = temp;
-		temp = temp->next;
+    	curr = temp;//saving temp to curr and
+		temp = temp->next;//assign next value to temp
 		}
 		if(flag == 0){
 			cout<<" Book not found please try again!"<<endl;
