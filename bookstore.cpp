@@ -2,7 +2,7 @@
 #include<string>
 #include<iomanip>
 #include <bits/stdc++.h>
-#include<fstream>
+#include<windows.h>
 using namespace std;
 
 struct BookList{
@@ -18,7 +18,11 @@ struct BookList{
 	BookList* prev;
 };
  BookList* head = NULL;
-
+COORD coord = {0, 0};
+void gotoxy (int x, int y){
+coord.X = x; coord.Y = y; // X and Y coordinates
+SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
 
 class DlinkedList{
  public:
@@ -76,18 +80,34 @@ class DlinkedList{
 
 	void display_data(){
 		if(head  == NULL){
-		 cout<<"no data";
+		 cout<<"Sorry! Bookshelf is empty.please add Books\n"<<endl;
 	}
 		else{
 			BookList* temp = head;
+			int i=0,j;
+            system("cls");
+            cout<<("*********************************Book Data*****************************");
+            gotoxy(2,2);
+            cout<<(" Title       Isbn       AUTHOR       Publisher         Publishing Date       Total page       Qty ");
+            j=4;
 			while(temp != NULL){
-				cout<<"\n Title of the book:"<<temp->Title;
-				cout<<"\n Author of the book:"<<temp->Author;
-				cout<<"\n Publisher of the book:"<<temp->Publisher;
-				cout<<"\n publishing date of the book:"<<temp->Publishing_Date;
-				cout<<"\n Total page:"<<temp->Num_of_page;
-				cout<<"\n Quantity of the book:"<<temp->Total_quantity;
-				cout<<"\n International standard book number:"<<temp->Isbn<<endl<<endl;
+                gotoxy(3,j);
+                cout<<temp->Title;
+                gotoxy(16,j);
+                cout<<temp->Isbn;
+                gotoxy(24,j);
+                cout<<temp->Author;
+                gotoxy(38,j);
+                cout<<temp->Publisher;
+                gotoxy(56,j);
+                cout<<temp->Publishing_Date;
+                gotoxy(79,j);
+                cout<<temp->Num_of_page;
+                gotoxy(93,j);
+                cout<<temp->Total_quantity;
+                cout<<("\n\n");
+                j++;
+
 				temp = temp->next;
 			}
 		}
@@ -140,39 +160,43 @@ int update_menu();
 void remove_menu();
 
 int main(){
+    DlinkedList listt;
 	int option;
 
 	while(true){
+        cout<<endl<<endl;
 		cout<<"\t\t********************************************************************"<<endl;
-		cout<<"\t\t\tWellcome To Automated book managment system"<<endl;
+		cout<<"\t\t\tWellcome To Automated Book Management System"<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
+        cout<<"\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 MAIN MENU \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2"<<endl;
 
-		cout<<"enter 1 to Search the book"<<endl;
-		cout<<"enter 2 to Sort the book"<<endl;
-		cout<<"enter 3 to Update book information"<<endl;
-		cout<<"enter 4)Exit"<<endl;
-		cout<<"Enter Choice:";
+        cout<<"1. Display book\n"<<endl;
+		cout<<"2. Sort books\n"<<endl;
+		cout<<"3. Search books\n"<<endl;
+		cout<<"4. Update book information\n"<<endl;
+		cout<<"5. Exit\n"<<endl;
+		cout<<"Enter your Choice:";
 		cin>>option;
 		//system("cls");
 
 	switch(option){
 		case 1:
-			search_book_menu();
+			listt.display_data();//function call to display data
 			break;
 		case 2:
-			sort_book_menu();
+			sort_book_menu();//sub menu for to apply various sorting (isbn & title)
 			break;
 		case 3:
-			update_menu();
+		    search_book_menu();//sub menu to apply searching(title ,author, isbn)
 			break;
 		case 4:
-			exit(0);
+			update_menu();//sub menu for (inserting ,removing,update quantity) of the book
+			break;
+		case 5:
+		    cout<<"Bye:)";
+			exit(0);//to exit and close the program
 		default:
 			cout<<"Please Input A valid Choice"<<endl<<endl;
-	}
-	if(option == 4){
-		cout<<"Bye:)";
-		return 0;
 	}
 }
 }//end of main
@@ -444,10 +468,9 @@ int update_menu(){
 
 		cout<<"enter 1 to Insert book at the start"<<endl;
 		cout<<"enter 2 to Insert book at the end"<<endl;
-		cout<<"enter 3 to display book"<<endl;
-		cout<<"enter 4 to remove book"<<endl;
-		cout<<"enter 5 update quantity of a given book"<<endl;
-		cout<<"enter 6 to Go back"<<endl;
+		cout<<"enter 3 to remove book"<<endl;
+		cout<<"enter 4 update quantity of a given book"<<endl;
+		cout<<"enter 5 to Go back"<<endl;
 		cout<<"Enter Choice:";
 		cin>>option;
 		//system("cls");
@@ -459,15 +482,12 @@ int update_menu(){
 			listt.inser_last();
 			break;
 		case 3:
-		    listt.display_data();
-			break;
-		case 4:
 			remove_menu();
 			break;
-		case 5:
+		case 4:
 			listt.quantity_update();
 			break;
-		case 6:
+		case 5:
 			main();
 		default:
 			cout<<"Please Input A valid Choice"<<endl<<endl;
@@ -482,7 +502,6 @@ void remove_menu(){
 		cout<<"\t\t********************************************************************"<<endl;
 		cout<<"\t\t\tDelete book menu"<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
-
 		cout<<"enter 1 to delete book using Isbn number"<<endl;
 		cout<<"enter 2 to delete book using title"<<endl;
 		cout<<"enter 3 to Go back"<<endl;
@@ -637,7 +656,7 @@ void DlinkedList::quantity_update(){
     if (i == NULL){
     	cout<<"book not found !!"<<endl;
 	}else{
-	
+
     cout<<"there are "<< i->Total_quantity<<" of books found in the library "<<endl;
     cout<<"to increase the book quantity press 1:"<<endl;
     cout<<"to decrease the book quantity press 2:"<<endl;
@@ -656,7 +675,7 @@ void DlinkedList::quantity_update(){
 
         }else{
             i->Total_quantity -= amount;
-            cout<<"Number of Books updated Successfully."<<endl;           
+            cout<<"Number of Books updated Successfully."<<endl;
             }
 }
 }
