@@ -18,6 +18,7 @@ struct BookList{
 	BookList* prev;
 };
  BookList* head = NULL;
+
 COORD coord = {0, 0};
 void gotoxy (int x, int y){
 coord.X = x; coord.Y = y; // X and Y coordinates
@@ -31,6 +32,7 @@ class DlinkedList{
 	 }
 	BookList* input_data(){
 		BookList* book_data = new BookList;
+
 		cout<<"\n enter Isbn: ";cin>>book_data->Isbn;
 		cout<<"\n enter Title of the book: ";cin>>book_data->Title;
 		cout<<"\n enter Author: ";cin>>book_data->Author;
@@ -163,6 +165,7 @@ int main(){
 	int option;
 
 	while(true){
+        system("Color B5");
         cout<<endl<<endl;
 		cout<<"\t\t********************************************************************"<<endl;
 		cout<<"\t\t\tWellcome To Automated Book Management System"<<endl;
@@ -215,6 +218,7 @@ int search_book_menu(){
 	DlinkedList list; // create an object of the class
 
 	while(true){
+        system("Color E5");
 		cout<<"\t\t********************************************************************"<<endl;
 		cout<<"\t\t\tWellcome To Search menu"<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
@@ -316,6 +320,7 @@ int sort_book_menu(){
 	DlinkedList listt;// create an object of the class
 
 	while(true){
+        system("Color C5");
 		cout<<"\t\t********************************************************************"<<endl;
 		cout<<"\t\t\tWellcome To Sorting menu"<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
@@ -478,6 +483,7 @@ int update_menu(){
 	DlinkedList listt;//assign head pointer to temp
 	int option;
 		while(true){
+        system("Color A5");
 		cout<<"\t\t********************************************************************"<<endl;
 		cout<<"\t\t\tUpdate book information menu"<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
@@ -544,6 +550,7 @@ void DlinkedList::delete_book(int option){
 	BookList* temp = head;//assign head pointer to temp
 	int i=0,value;//declaration of integers
 	string title;//declaration of string
+	system("Color 4");
 	 if (temp == NULL){
         cout<<endl<<endl<<endl;
         cout<<"No Books to delete"<<endl;
