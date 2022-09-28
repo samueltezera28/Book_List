@@ -1,3 +1,14 @@
+/*
+  * @file BookList.cpp
+  * Brief about this program it is an Automated library management system
+  * It can add a book at the beginning of the list and
+  * At the end of the list
+  * It sort the list based on Title and ISBN
+  * It can Traverse and Display all the books Added to the list form first to last
+  * It Search a book using Title , ISBN and Author
+  * It can Update the books detail
+  * Delete a specific book from Booklist Using ISBN and Title
+*/
 #include<iostream>
 #include<string>
 #include<iomanip>
@@ -5,6 +16,7 @@
 #include<windows.h>
 using namespace std;
 
+// Define struct by the name BookList with seven data members
 struct BookList{
 	int Isbn;
 	string Title;
@@ -17,7 +29,7 @@ struct BookList{
 	BookList* next;
 	BookList* prev;
 };
- BookList* head = NULL;
+ BookList* head = NULL; // head pointer assined to NULL
 
 COORD coord = {0, 0};
 void gotoxy (int x, int y){
@@ -25,9 +37,10 @@ coord.X = x; coord.Y = y; // X and Y coordinates
 SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
+// define class by the name Dlinked list
 class DlinkedList{
- public:
- 	DlinkedList(){
+ public: // Access specifier
+ 	DlinkedList(){ // data member
 
 	 }
 	BookList* input_data(){
@@ -62,7 +75,7 @@ class DlinkedList{
 	   }
     }
     //inserting last
-	void inser_last(){
+	void insert_last(){
 		if(head == NULL){
 			head = input_data();
 		}
@@ -79,6 +92,54 @@ class DlinkedList{
 		}
 	}
 
+ /*  void insert_middle(){
+   	 int count=0,i;
+   	 BookList *ptr=head;
+   	 BookList *newNode=NULL;
+   	 BookList *newNode2=head;
+
+   	 if(head==NULL){
+   	 	newNode = head;
+   	 	newNode->next=NULL;
+   	 	newNode->prev=NULL;
+		}
+	else{
+		ptr=head->next;
+
+		newNode->next=ptr->next;
+		newNode->prev=ptr;
+		ptr->next->prev=newNode;
+		ptr->next=newNode;
+	}
+   }
+
+
+// Insertion in the middle
+
+ /* void insert_middle(Node**head,int data){
+    Node* newNode = newNode ();
+    newNode->data = data;
+
+    if(*head==NULL){
+    	insert(head,data);
+    	return;
+	}
+
+
+
+   void insert_middle(struct Node* prev_node,int data){
+   	if(prev_node == NULL){
+   		return;
+	   }
+	   struct Node* newNode = newNode;
+	   newNode->data = data;
+	   newNode->next = prev_node->next;
+	   prev_node->next = prev_node;
+	   if(newNode->next != NULL)
+	    newNode->next->prev = newNode;
+   }
+}*/
+  // Display data
 	void display_data(){
 		if(head  == NULL){
 		 cout<<"Sorry! Bookshelf is empty.please add Books\n"<<endl;
@@ -87,7 +148,7 @@ class DlinkedList{
 			BookList* temp = head;
 			int i=0,j;
             system("cls");
-            cout<<("*********************************Book Data*****************************");
+            cout<<("\t*********************************Book Data*****************************");
             gotoxy(2,2);
             cout<<(" Title       Isbn       AUTHOR       Publisher         Publishing Date       Total page       Qty ");
             j=4;
@@ -130,7 +191,7 @@ class DlinkedList{
                         cout<<"\n Total page:"<<temp->Num_of_page;
                         cout<<"\n Quantity of the book:"<<temp->Total_quantity;
                         cout<<"\n International standard book number:"<<temp->Isbn<<endl<<endl;
-                        qtemp = temp;//hot fix needed
+                        qtemp = temp;
                         break;
                      }
                      temp = temp->next;
@@ -160,15 +221,16 @@ int sort_book_menu();
 int update_menu();
 void remove_menu();
 
+// main function
 int main(){
     DlinkedList listt;
-	int option;
+	int option; //Declaration of variables
 
 	while(true){
         system("Color B5");
         cout<<endl<<endl;
 		cout<<"\t\t********************************************************************"<<endl;
-		cout<<"\t\t\tWellcome To Automated Book Management System"<<endl;
+		cout<<"\t\t\t             Wellcome To Automated Book Management System         "<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
         cout<<"\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2 MAIN MENU \xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2"<<endl;
 
@@ -220,7 +282,7 @@ int search_book_menu(){
 	while(true){
         system("Color E5");
 		cout<<"\t\t********************************************************************"<<endl;
-		cout<<"\t\t\tWellcome To Search menu"<<endl;
+		cout<<"\t\t\t                    Wellcome To Search menu                       "<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
 
 		cout<<"1. Search by ISBN"<<endl;
@@ -322,7 +384,7 @@ int sort_book_menu(){
 	while(true){
         system("Color C5");
 		cout<<"\t\t********************************************************************"<<endl;
-		cout<<"\t\t\tWellcome To Sorting menu"<<endl;
+		cout<<"\t\t\t                  Wellcome To Sorting menu                        "<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
 
 		cout<<"1. Sort by ISBN"<<endl;
@@ -348,6 +410,7 @@ int sort_book_menu(){
 }//end of sort menu
 
 void DlinkedList::sort_by_isbn(){
+
     // sotrting by isbn in ascending  order
     // it uses Bubble sort algorithm
  	BookList *i, *j; //declaration of pointer i & j that points to BookList structure
@@ -400,7 +463,7 @@ void DlinkedList::sort_by_isbn(){
      	if(option == 1){
      		display_data();//display daata
 		 }
-		 else{
+		 else if(option == 0){
 		 	main();//return to main
 		 }
 	 }
@@ -463,7 +526,7 @@ void DlinkedList::sort_by_title(){
      	if(option == 1){
      		display_data();//display the sorted data
 		 }
-		 else{
+		 else if (option == 0){
 		 	main();//return main
 		 }
 	 }
@@ -485,44 +548,50 @@ int update_menu(){
 		while(true){
         system("Color A5");
 		cout<<"\t\t********************************************************************"<<endl;
-		cout<<"\t\t\tUpdate book information menu"<<endl;
+		cout<<"\t\t\t                  Update book information                     menu"<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
 
 		cout<<"\n1. Insert book at the start"<<endl;
-		cout<<"\n2. Insert book at the end"<<endl;
-		cout<<"\n3. Remove book"<<endl;
-		cout<<"\n4. Update quantity of a given book"<<endl;
-		cout<<"\n5. Go back"<<endl;
-
+		cout<<"\n2. Insert book at the middle"<<endl;
+		cout<<"\n3. Insert book at the end"<<endl;
+		cout<<"\n4. Remove book"<<endl;
+		cout<<"\n5. Update quantity of a given book"<<endl;
+		cout<<"\n6. Go back"<<endl;
 		cout<<"Enter Choice:";
 		cin>>option;
+		system("cls");
 	switch(option){
 		case 1:
 			listt.insert_first();//inserting first of the list
 			break;
 		case 2:
-			listt.inser_last(); //inserting last
+		//	listt.insert_middle();  //inserting at the middle
 			break;
 		case 3:
-			remove_menu();//calling remove sum menu
+			listt.insert_last(); //inserting last
 			break;
 		case 4:
-			listt.quantity_update();//update quantity of book by using Isbn
+			remove_menu();//calling remove sum menu
 			break;
 		case 5:
-			main();//return to main
+			listt.quantity_update();//update quantity of book by using Isbn
+			break;
+		case 6:
+		    main();//return to main
 		default:
 			cout<<"Please Input A valid Choice"<<endl<<endl;
 	}
+ }
 }
-}
+
+//////
 
 void remove_menu(){
 	DlinkedList listt;// create an object of the class
 	int option;
 		while(true){
 		cout<<"\t\t********************************************************************"<<endl;
-		cout<<"\t\t\tDelete book menu"<<endl;
+		cout<<"\t\t\t                       Delete book menu                           "<<endl;
 		cout<<"\t\t********************************************************************"<<endl<<endl;
 		cout<<"\n1. Delete Book By Isbn"<<endl;
 		cout<<"\n2. Delete Book By Title"<<endl;
@@ -670,35 +739,129 @@ void DlinkedList::delete_title(int size, string title){
 void DlinkedList::quantity_update(){
     BookList* i, *j;
     BookList* temp = head;
-	int num,amount,isbn;
-	string y;
-    cout<<"input isbn of the book to edit its quantites"<<endl;
+	int num,amount,isbn,publising_date,option,num_of_page,flag = 0;
+	string title,author,publisher,y;
+
+    cout<<"Input Isbn to edit book data : "<<endl;
     cin>>isbn;
     i = search_by_isbn(isbn);
     if (i == NULL){
-    	cout<<"book not found !!"<<endl;
-	}else{
-
-    cout<<"there are "<< i->Total_quantity<<" of books found in the library "<<endl;
-    cout<<"to increase the book quantity press 1:"<<endl;
-    cout<<"to decrease the book quantity press 2:"<<endl;
-    cin>>num;
-    if(num == 1){
-        cout<<"how many books u want to add ";
-        cin>>amount;
-        i->Total_quantity += amount;
-        cout<<"Number of Books updated Successfully."<<endl;
+        cout<<"book not found !!"<<endl;
+        flag = 5;
     }
-    if(num == 2){
-        cout<<"how many books u want to remove ";
-        cin>>amount;
-        if(i->Total_quantity< amount){
-            cout<<"not enough books";
 
-        }else{
-            i->Total_quantity -= amount;
-            cout<<"Number of Books updated Successfully."<<endl;
+	while(flag == 0){
+            cout<<"\n1. Update Quantity of the book"<<endl;
+            cout<<"\n2. Update Title of the book"<<endl;
+            cout<<"\n3. Update Author of the book"<<endl;
+            cout<<"\n4. Update Publisher of the book"<<endl;
+            cout<<"\n5. Update Publishing date of the book"<<endl;
+            cout<<"\n6. Update Number of pages of the book"<<endl;
+            cout<<"\n7. Update ISBN of the book"<<endl;
+            cout<<"\n8 Go back"<<endl;
+            cout<<"Enter Choice:";
+            cin>>option;
+            system("cls");
+	switch(option){
+		case 1:
+                cout<<"there are "<< i->Total_quantity<<" of books found in the library "<<endl;
+                cout<<"to increase the book quantity press 1:"<<endl;
+                cout<<"to decrease the book quantity press 2:"<<endl;
+                cin>>num;
+                if(num == 1){
+                        cout<<"how many books u want to add ";
+                        cin>>amount;
+                        i->Total_quantity += amount;
+                        cout<<"Number of Books updated Successfully."<<endl;
+                    }
+                if(num == 2){
+                        cout<<"How many books u want to remove: ";
+                        cin>>amount;
+                if(i->Total_quantity< amount){
+                    cout<<"not enough books";
+                }else{
+                    i->Total_quantity -= amount;
+                    cout<<"Number of Books updated Successfully."<<endl;
             }
+        }
+	    	break;
+		case 2:
+		    cout<<"Title of the book is -> "<<i->Title<<endl;
+            cout<<"Input The New Title:"<<endl;
+            cin>>title;
+
+            i->Title = title;
+            cout<<"Title of the Books updated Successfully."<<endl;
+            cout<<"Press 1 : to Display the New list"<<endl;
+            cout<<"press any key to continue"<<endl;
+            cin>>num;
+            if(num == 1){
+            display_data();
+            }
+
+		    break;
+
+		case 3:
+		    cout<<"Author of the book is -> "<<i->Author<<endl;
+            cout<<"Input The New Author:"<<endl;
+            cin>>author;
+
+            i->Author = author;
+            cout<<"Author of the book is updated Successfully."<<endl;
+            cout<<"Press 1 : to Display the New list"<<endl;
+            cout<<"press any key to continue"<<endl;
+            cin>>num;
+            if(num == 1){display_data();}
+		    break;
+
+		case 4:
+		    cout<<"Publisher of the book is -> "<<i->Publisher<<endl;
+            cout<<"Input The New Publisher:"<<endl;
+            cin>>publisher;
+
+            i->Publisher = publisher;
+            cout<<"Publisher of the Book is updated Successfully."<<endl;
+            cout<<"Press 1 : to Display the New list"<<endl;
+            cout<<"press any key to continue"<<endl;
+            cin>>num;
+            if(num == 1){display_data();}
+		    break;
+
+		case 5:
+		    cout<<"publishing date of the book is -> "<<i->Publishing_Date<<endl;
+            cout<<"Input The New Date:"<<endl;
+            cin>>publising_date;
+
+            i->Publishing_Date = publising_date;
+            cout<<"Publishing date of the Book is updated Successfully."<<endl;
+            cout<<"Press 1 : to Display the New list"<<endl;
+            cout<<"press any key to continue"<<endl;
+            cin>>num;
+            if(num == 1){display_data();}
+		    break;
+
+			cout<<"Input publishing date of the book to edit: "<<endl;
+            cin>>publising_date;
+
+		case 6:
+		    cout<<"Number of page of the book is -> "<<i->Num_of_page<<endl;
+            cout<<"Input The New Number of page:"<<endl;
+            cin>>num_of_page;
+
+            i->Num_of_page = num_of_page;
+            cout<<"Number of page of the Book is updated Successfully."<<endl;
+            cout<<"Press 1 : to Display the New list"<<endl;
+            cout<<"press any key to continue"<<endl;
+            cin>>num;
+            if(num == 1){display_data();}
+		    break;
+
+		case 8:
+			update_menu();
+			default:
+			cout<<"..";
+
+  }
 }
 }
-}
+// End of update menu
