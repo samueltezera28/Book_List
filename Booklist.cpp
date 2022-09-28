@@ -92,53 +92,50 @@ class DlinkedList{
 		}
 	}
 
- /*  void insert_middle(){
-   	 int count=0,i;
-   	 BookList *ptr=head;
-   	 BookList *newNode=NULL;
-   	 BookList *newNode2=head;
-
-   	 if(head==NULL){
-   	 	newNode = head;
-   	 	newNode->next=NULL;
-   	 	newNode->prev=NULL;
+	void insert_middle(){
+	    //to insert in the middle of any node using doubly linked list
+	    BookList* temp = head;//assign of head to temp
+	    BookList* curr;//curr pointer
+	    BookList* temp2 =head;
+	    int i,mid;//declaration of integer variable
+	    i=0;
+		if(head == NULL){
+			head = input_data();//input data as head if head is null
 		}
-	else{
-		ptr=head->next;
+		if(temp->next == NULL){
+		    //if there is only one node
+		    //the next pointer will be the new data
+                curr = input_data();
+                temp->next = curr;
+                curr->prev = temp;
+		}
+		else{
+		while(temp!=NULL){
+            i = i+1;//total size
+            temp=temp->next;
+		}
+		mid = i*0.5;//mid caluclator
+        for(int j = 1; j<=mid; j++){
+            //iterates until middle node
+            if(j == mid){
+                BookList* newnode = input_data();//input data to the newnode
+                curr=temp2->next;//reserve next node to pointer called curr
+                temp2->next = newnode;//assign newnode to temp2->next
+                newnode->prev = temp2;//newnode previous will be temp2
+                newnode->next = curr;//curr to newnode next
+                curr->prev = newnode;//newnode to curr prev
+                break;
 
-		newNode->next=ptr->next;
-		newNode->prev=ptr;
-		ptr->next->prev=newNode;
-		ptr->next=newNode;
+		 		}
+		 		temp2=temp2->next;//pushing temp to next node
+
+		    }
+		}
+
 	}
-   }
-
-
-// Insertion in the middle
-
- /* void insert_middle(Node**head,int data){
-    Node* newNode = newNode ();
-    newNode->data = data;
-
-    if(*head==NULL){
-    	insert(head,data);
-    	return;
-	}
 
 
 
-   void insert_middle(struct Node* prev_node,int data){
-   	if(prev_node == NULL){
-   		return;
-	   }
-	   struct Node* newNode = newNode;
-	   newNode->data = data;
-	   newNode->next = prev_node->next;
-	   prev_node->next = prev_node;
-	   if(newNode->next != NULL)
-	    newNode->next->prev = newNode;
-   }
-}*/
   // Display data
 	void display_data(){
 		if(head  == NULL){
@@ -173,9 +170,9 @@ class DlinkedList{
 				temp = temp->next;
 			}
 		}
-	}
+	}//end of display data
 	BookList* search_by_isbn(int searchvalue){
-
+        //search by isbn
             BookList* temp = head;
             BookList* qtemp;
             int i=0,value;
@@ -191,7 +188,7 @@ class DlinkedList{
                         cout<<"\n Total page:"<<temp->Num_of_page;
                         cout<<"\n Quantity of the book:"<<temp->Total_quantity;
                         cout<<"\n International standard book number:"<<temp->Isbn<<endl<<endl;
-                        qtemp = temp;
+                        qtemp = temp;//assign temp to qtemp
                         break;
                      }
                      temp = temp->next;
@@ -201,7 +198,7 @@ class DlinkedList{
                  }else{
                     cout<<searchvalue<<" is not found in the list.\n";
                  }
-                 return qtemp;
+                 return qtemp;//qtemp is used for updating specific book information
              }
 }
 	void search_by_title(string SearchTitle);
@@ -565,7 +562,7 @@ int update_menu(){
 			listt.insert_first();//inserting first of the list
 			break;
 		case 2:
-		//	listt.insert_middle();  //inserting at the middle
+            listt.insert_middle();  //inserting at the middle
 			break;
 		case 3:
 			listt.insert_last(); //inserting last
@@ -744,7 +741,7 @@ void DlinkedList::quantity_update(){
 
     cout<<"Input Isbn to edit book data : "<<endl;
     cin>>isbn;
-    i = search_by_isbn(isbn);
+    i = search_by_isbn(isbn);//checking for the node and assign it to i
     if (i == NULL){
         cout<<"book not found !!"<<endl;
         flag = 5;
@@ -763,7 +760,7 @@ void DlinkedList::quantity_update(){
             cin>>option;
             system("cls");
 	switch(option){
-		case 1:
+		case 1://to update quantity of the given book
                 cout<<"there are "<< i->Total_quantity<<" of books found in the library "<<endl;
                 cout<<"to increase the book quantity press 1:"<<endl;
                 cout<<"to decrease the book quantity press 2:"<<endl;
@@ -784,8 +781,9 @@ void DlinkedList::quantity_update(){
                     cout<<"Number of Books updated Successfully."<<endl;
             }
         }
+             update_menu();
 	    	break;
-		case 2:
+		case 2://to update title of the given book
 		    cout<<"Title of the book is -> "<<i->Title<<endl;
             cout<<"Input The New Title:"<<endl;
             cin>>title;
@@ -798,10 +796,10 @@ void DlinkedList::quantity_update(){
             if(num == 1){
             display_data();
             }
-
+             update_menu();
 		    break;
 
-		case 3:
+		case 3://to update Author of the given book
 		    cout<<"Author of the book is -> "<<i->Author<<endl;
             cout<<"Input The New Author:"<<endl;
             cin>>author;
@@ -812,9 +810,11 @@ void DlinkedList::quantity_update(){
             cout<<"press any key to continue"<<endl;
             cin>>num;
             if(num == 1){display_data();}
+            update_menu();
+
 		    break;
 
-		case 4:
+		case 4://to update publisher of the given book
 		    cout<<"Publisher of the book is -> "<<i->Publisher<<endl;
             cout<<"Input The New Publisher:"<<endl;
             cin>>publisher;
@@ -825,9 +825,10 @@ void DlinkedList::quantity_update(){
             cout<<"press any key to continue"<<endl;
             cin>>num;
             if(num == 1){display_data();}
+             update_menu();
 		    break;
 
-		case 5:
+		case 5://to update publishign date of the given book
 		    cout<<"publishing date of the book is -> "<<i->Publishing_Date<<endl;
             cout<<"Input The New Date:"<<endl;
             cin>>publising_date;
@@ -838,12 +839,10 @@ void DlinkedList::quantity_update(){
             cout<<"press any key to continue"<<endl;
             cin>>num;
             if(num == 1){display_data();}
+             update_menu();
 		    break;
 
-			cout<<"Input publishing date of the book to edit: "<<endl;
-            cin>>publising_date;
-
-		case 6:
+		case 6://to update number of page of the given book
 		    cout<<"Number of page of the book is -> "<<i->Num_of_page<<endl;
             cout<<"Input The New Number of page:"<<endl;
             cin>>num_of_page;
@@ -854,6 +853,20 @@ void DlinkedList::quantity_update(){
             cout<<"press any key to continue"<<endl;
             cin>>num;
             if(num == 1){display_data();}
+             update_menu();
+		    break;
+		case 7://to update isbn of the given book
+		    cout<<"ISBN of the book is -> "<<i->Isbn<<endl;
+            cout<<"Input The New ISBN:"<<endl;
+            cin>>isbn;
+
+            i->Isbn = isbn;
+            cout<<"ISBN of the Book is updated Successfully."<<endl;
+            cout<<"Press 1 : to Display the New list"<<endl;
+            cout<<"press any key to continue"<<endl;
+            cin>>num;
+            if(num == 1){display_data();}
+             update_menu();
 		    break;
 
 		case 8:
