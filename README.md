@@ -8,5 +8,4 @@
   * It can Update the books detail
   * Delete a specific book from Booklist Using ISBN and Title
 
-  ## what is left 
-  file saving 
+  ## this is a group project  
