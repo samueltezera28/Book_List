@@ -8,4 +8,7 @@
   * It can Update the books detail
   * Delete a specific book from Booklist Using ISBN and Title
 
-  ## this is a group project  
+  ## this is a group project
+   
+   #to run 
+   step1: open any c++ ide
