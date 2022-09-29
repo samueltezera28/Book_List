@@ -16,7 +16,7 @@
   ## The Team
   * **Samuel Tezera**
   * **Robel Iffa**
-  * **Yakob**
+  * **Yakob Hamda**
   * **Estifanos Ayalew**
   * **Hermela**
 ## Overview
