@@ -16,12 +16,12 @@
   ## The Team
   * **Samuel Tezera**
   * **Robel Iffa**
-  * **yakob **
+  * **Yakob**
   * **Estifanos Ayalew**
-  * **Hermela **
-  
-   
-   #to run 
-   step1: open any c++ ide
-   step 2 : open booklist file and
-   step 3
+  * **Hermela**
+## Overview
+Our app is a single-page app, coded mainly in c++. **Booklist** is Back-end heavy,meaning that we focused our time and energy in developing a the backend to develop our understanding of data strucure and algorithm knowledge. 
+
+# Tutorial
+| [Booklist.exe](./Booklist.exe) | The compiled and excutable program. |
+| [Booklist.cpp](./Booklist.cpp) | The main c++ resource file . |
