@@ -18,7 +18,7 @@
   * **Robel Iffa**
   * **Yakob Hamda**
   * **Estifanos Ayalew**
-  * **Hermela**
+  * **Hermela Eyasu**
 ## Overview
 Our app is a single-page app, coded mainly in c++. **Booklist** is Back-end heavy,meaning that we focused our time and energy in developing a the backend to develop our understanding of data strucure and algorithm knowledge. 
 
