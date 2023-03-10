@@ -15,7 +15,7 @@
   This project is our Portfolio Project, Concluding our Data Structure and Algorithm course at Unity University.
   ## The Team
   * **Samuel Tezera**
-  * **Robel Iffa**
+  * **Robel Effa**
   * **Yakob Hamda**
   * **Estifanos Ayalew**
   * **Hermela Eyasu**
